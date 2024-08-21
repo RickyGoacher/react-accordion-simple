@@ -1,0 +1,17 @@
+.accordion-wrapper .title {
+    cursor: pointer;
+}
+
+.accordion-wrapper .title:last-child {
+    border-bottom: 0;
+}
+
+.accordion-wrapper .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.1s linear;
+}
+
+.accordion-wrapper.active .content {
+    max-height: unset;
+}
