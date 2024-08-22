@@ -37,9 +37,11 @@ const AccordionComponent = (props:AccordionComponentInterface) => {
         }
     `;
 
-    const [getAccordionState, setAccordionState] = useState(Object.entries(props.children).map((item, index) => {
-        return index === 0 ? true : false;
-    }));
+    const [getAccordionState, setAccordionState] = useState(() => {
+        return Object.entries(props.children).map((item, index) => {
+            return index === 0 ? true : false;
+        });
+    });
 
     function accordionOnClick (e:SyntheticEvent) {
 

@@ -1,6 +1,6 @@
 {
   "name": "react-accordion-simple",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple to use react accordion wrapper component with style config.",
   "main": "./dist/cjs/index.js",
   "repository": {
