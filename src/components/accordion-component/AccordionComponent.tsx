@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent, useState } from "react";
+import { ReactNode, SyntheticEvent, useState, useEffect, useMemo } from "react";
 
 interface AccordionComponentInterface {
     children: Array<ReactNode>;
@@ -13,29 +13,36 @@ interface AccordionComponentInterface {
 
 const AccordionComponent = (props:AccordionComponentInterface) => {
 
-    const Styles = `
+    const Styles = useMemo(() => {
+        return (
+            `
+                .accordion-wrapper .title {
+                    padding: ${props.titlePadding};
+                    border-bottom: solid 1px ${props.borderBottomColour};
+                    background-color: ${props.titleBackgroundColour};
+                    color: ${props.titleColour};
 
-        .accordion-wrapper .title {
-            padding: ${props.titlePadding};
-            border-bottom: solid 1px ${props.borderBottomColour};
-            background-color: ${props.titleBackgroundColour};
-            color: ${props.titleColour};
+                }
 
-        }
+                .accordion-wrapper .content {
+                    background-color: ${props.contentBackgroundColour};
+                    color: ${props.contentColour};
+                    padding: ${props.contentPadding};
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
 
-        .accordion-wrapper .content {
-            background-color: ${props.contentBackgroundColour};
-            color: ${props.contentColour};
-            padding: ${props.contentPadding};
-            padding-top: 0;
-            padding-bottom: 0;
-        }
+                .accordion-wrapper.active .content {
+                    max-height: unset;
+                    padding: ${props.contentPadding};
+                }
+            `
+        )
+    }, []);
 
-        .accordion-wrapper.active .content {
-            max-height: unset;
-            padding: ${props.contentPadding};
-        }
-    `;
+    useEffect(() => {
+
+    }, [Styles])
 
     const [getAccordionState, setAccordionState] = useState(() => {
         return Object.entries(props.children).map((item, index) => {
